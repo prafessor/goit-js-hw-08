@@ -64,9 +64,6 @@ const images = [
   },
 ];
 
-const galleryListEl = document.querySelector('.gallery');
-const galleryLinkEl = document.querySelectorAll('.gallery-link');
-
 // create and add gallery item to gallery list
 const galleryCardTemplate = images
   .map(el => {
@@ -85,9 +82,13 @@ const galleryCardTemplate = images
   })
   .join('');
 
+const galleryListEl = document.querySelector('.gallery');
+
 galleryListEl.innerHTML = galleryCardTemplate;
 
 // remove basic sitting of link
+const galleryLinkEl = document.querySelectorAll('.gallery-link');
+
 galleryLinkEl.forEach(el => {
   el.addEventListener('click', ev => {
     ev.preventDefault();
