@@ -67,14 +67,15 @@ const images = [
 // create and add gallery item to gallery list
 const galleryCardTemplate = images
   .map(el => {
+    const { preview, original, description } = el;
     return `
 <li class="gallery-item">
-  <a class="gallery-link" href="${el.description}">
+  <a class="gallery-link" href="${original}">
     <img
       class="gallery-image"
-      src="${el.preview}"
-      data-source="${el.original}"
-      alt="${el.description}"
+      src="${preview}"
+      data-source="${original}"
+      alt="${description}"
     />
   </a>
 </li>
@@ -86,17 +87,9 @@ const galleryListEl = document.querySelector('.gallery');
 
 galleryListEl.innerHTML = galleryCardTemplate;
 
-// remove basic sitting of link
-const galleryLinkEl = document.querySelectorAll('.gallery-link');
-
-galleryLinkEl.forEach(el => {
-  el.addEventListener('click', ev => {
-    ev.preventDefault();
-  });
-});
-
 // add event opening modal window for image
 const onImageClick = event => {
+  event.preventDefault();
   if (event.target.nodeName === 'IMG') {
     basicLightbox
       .create(
